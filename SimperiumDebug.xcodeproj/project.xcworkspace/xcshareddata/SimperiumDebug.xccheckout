@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>31C1CC02-3C14-4398-A4F1-447743B255C5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SimperiumDebug</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>300BF990-C00D-4C14-8FAE-D0CAB8356D62</key>
+		<string>https://github.com/jleandroperez/simperium-debug-ios.git</string>
+		<key>C271DB98-508C-45F9-9DC4-6F92AD36A076</key>
+		<string>https://github.com/Simperium/simperium-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SimperiumDebug.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>300BF990-C00D-4C14-8FAE-D0CAB8356D62</key>
+		<string>../..</string>
+		<key>C271DB98-508C-45F9-9DC4-6F92AD36A076</key>
+		<string>../../../simperium-ios</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jleandroperez/simperium-debug-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>300BF990-C00D-4C14-8FAE-D0CAB8356D62</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>300BF990-C00D-4C14-8FAE-D0CAB8356D62</string>
+			<key>IDESourceControlWCCName</key>
+			<string>simperium-debug-ios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C271DB98-508C-45F9-9DC4-6F92AD36A076</string>
+			<key>IDESourceControlWCCName</key>
+			<string>simperium-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

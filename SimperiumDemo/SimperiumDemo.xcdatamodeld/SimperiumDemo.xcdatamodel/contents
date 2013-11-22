@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SDTask" representedClassName="SDTask" parentEntity="SPManagedObject" syncable="YES">
+        <attribute name="payload" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SPManagedObject" representedClassName="SPManagedObject" isAbstract="YES" syncable="YES">
+        <attribute name="ghostData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="simperiumKey" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SDTask" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SPManagedObject" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
