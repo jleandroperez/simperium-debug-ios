@@ -1,19 +1,18 @@
 //
-//  SDTask.m
+//  SDSubTask.m
 //  SimperiumDebug
 //
 //  Created by Jorge Leandro Perez on 12/2/13.
 //  Copyright (c) 2013 Lantean. All rights reserved.
 //
 
-#import "SDTask.h"
 #import "SDSubTask.h"
+#import "SDTask.h"
 
 
-@implementation SDTask
+@implementation SDSubTask
 
-@dynamic payload;
 @dynamic title;
-@dynamic subtasks;
+@dynamic task;
 
 @end

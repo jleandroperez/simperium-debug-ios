@@ -10,6 +10,7 @@
 
 #import "SDCoreDataManager.h"
 #import "SDTask.h"
+#import "SDSubTask.h"
 
 
 
@@ -21,6 +22,7 @@ NSString* const kAppId				= @"donor-date-4b8";
 NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
 NSInteger const kEntitiesBlast		= 60;
+NSInteger const kSubEntitiesRatio	= 10;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
 
@@ -134,34 +136,39 @@ NSInteger const kEntitiesToDelete	= 1;
 	[self.tableView reloadData];
 }
 
+-(void)insertEntities:(NSUInteger)number
+{
+	[self.privateContext performBlock:^{
+		for(NSInteger count = -1; ++count < number; )
+		{
+			SDTask* task	= [NSEntityDescription insertNewObjectForEntityForName:@"SDTask" inManagedObjectContext:self.privateContext];
+			task.title		= [NSString stringWithFormat:@"Task [%@]", [self.timeFormat stringFromDate:[NSDate date]]];
+			task.payload	= [self payload];
+			
+			for(NSInteger count = -1; ++count < kSubEntitiesRatio; )
+			{
+				SDSubTask* subtask = [NSEntityDescription insertNewObjectForEntityForName:@"SDSubTask" inManagedObjectContext:self.privateContext];
+				subtask.title = [NSString stringWithFormat:@"Subtask [%d]", count];
+				[task addSubtasksObject:subtask];
+			}
+		}
+	}];
+}
+
 -(IBAction)insertItemSingle:(id)sender
 {
 	NSLog(@"<> Inserting Model Object");
 	
-	[self.privateContext performBlock:^{
-		
-		SDTask* task	= [NSEntityDescription insertNewObjectForEntityForName:@"SDTask" inManagedObjectContext:self.privateContext];
-		task.title		= [NSString stringWithFormat:@"Task [%@]", [self.timeFormat stringFromDate:[NSDate date]]];
-		task.payload	= [self payload];
-		[self save];
-	}];
+	[self insertEntities:1];
+	[self save];
 }
 
 -(IBAction)insertItemBatch:(id)sender
 {
 	NSLog(@"<> Inserting %d Model Object. Total: %d KB", kEntitiesBlast, (kEntityByteSize * kEntitiesBlast / 1024));
 		
-	[self.privateContext performBlock:^{
-		
-		for(NSInteger count = -1; ++count < kEntitiesBlast; )
-		{
-			SDTask* task	= [NSEntityDescription insertNewObjectForEntityForName:@"SDTask" inManagedObjectContext:self.privateContext];
-			task.title		= [NSString stringWithFormat:@"Task [%@]", [self.timeFormat stringFromDate:[NSDate date]]];
-			task.payload	= [self payload];
-		}
-		
-		[self save];
-	}];
+	[self insertEntities:kEntitiesBlast];
+	[self save];
 }
 
 -(IBAction)delAllItems:(id)sender

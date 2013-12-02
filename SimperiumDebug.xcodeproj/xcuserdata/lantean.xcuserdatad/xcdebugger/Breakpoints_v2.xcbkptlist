@@ -10,122 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimperiumDemo/SDMasterViewController.m"
-            timestampString = "406835460.021282"
+            timestampString = "407686718.333135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPCoreDataStorage.m"
-            timestampString = "406826239.076998"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
-            landmarkName = "-childrenContextDidSave:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPCoreDataStorage.m"
-            timestampString = "406837159.773733"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
-            landmarkName = "-mainContextWillSave:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPCoreDataStorage.m"
-            timestampString = "406837273.301592"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
-            landmarkName = "-mainContextDidSave:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SPCoreDataStorage mainContextDidSave:]"
-                  moduleName = "SimperiumDebug"
-                  urlString = "file:///Users/lantean/Documents/%5BAutomattic%5D/simperium-ios/Simperium/SPCoreDataStorage.m"
-                  timestampString = "406839993.562782"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "438"
-                  endingLineNumber = "438"
-                  offsetFromSymbolStart = "244">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SPCoreDataStorage mainContextDidSave:]"
-                  moduleName = "SimperiumDebug"
-                  urlString = "file:///Users/lantean/Documents/%5BAutomattic%5D/simperium-ios/Simperium/SPCoreDataStorage.m"
-                  timestampString = "406839993.563074"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "438"
-                  endingLineNumber = "438"
-                  offsetFromSymbolStart = "574">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPCoreDataStorage.m"
-            timestampString = "406837170.76376"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
-            landmarkName = "-childrenContextWillSave:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPCoreDataStorage.m"
-            timestampString = "406839967.768722"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
-            landmarkName = "-childrenContextDidSave:"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-insertEntities:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -145,29 +35,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPIndexProcessor.m"
-            timestampString = "406840179.981494"
+            filePath = "../simperium-ios/Simperium/SPCoreDataStorage.m"
+            timestampString = "407689678.114885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-processIndex:bucket:versionHandler:"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-objectForKey:bucketName:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../simperium-ios/Simperium/SPIndexProcessor.m"
-            timestampString = "406840183.633606"
+            filePath = "../simperium-ios/Simperium/SPChangeProcessor.m"
+            timestampString = "407692022.985558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-reconcileLocalAndRemoteIndex:bucket:storage:"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "-processRemoteChange:bucket:clientID:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

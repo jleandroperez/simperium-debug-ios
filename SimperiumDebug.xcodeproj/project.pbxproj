@@ -21,17 +21,25 @@
 		24E7D3FB1797735200D54680 /* SimperiumDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24E7D3F91797735200D54680 /* SimperiumDemo.xcdatamodeld */; };
 		24E7D3FE1797735200D54680 /* SDMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E7D3FD1797735200D54680 /* SDMasterViewController.m */; };
 		24E7D4091797752700D54680 /* SDCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E7D4081797752700D54680 /* SDCoreDataManager.m */; };
-		24E7D4111797758A00D54680 /* SDTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E7D4101797758900D54680 /* SDTask.m */; };
 		24E7D5CE179776AE00D54680 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5CD179776AE00D54680 /* Security.framework */; };
 		24E7D5D0179776B600D54680 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5CF179776B600D54680 /* CFNetwork.framework */; };
 		24E7D5D2179776BE00D54680 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D1179776BE00D54680 /* MobileCoreServices.framework */; };
 		24E7D5D4179776C500D54680 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D3179776C500D54680 /* SystemConfiguration.framework */; };
 		24E7D5D6179776D500D54680 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D5179776D500D54680 /* libz.dylib */; };
 		24E7D5D8179776EF00D54680 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D7179776EF00D54680 /* libicucore.dylib */; };
+		B570FBB4184CC1CC00935FD1 /* SDTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B570FBB3184CC1CC00935FD1 /* SDTask.m */; };
+		B570FBB7184CC1CD00935FD1 /* SDSubTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B570FBB6184CC1CD00935FD1 /* SDSubTask.m */; };
 		B5CE4AD5183D3CD50091761A /* libSimperium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CE4ACE183D3CA90091761A /* libSimperium.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B570FBC8184CEE4900935FD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5CE4AC6183D3CA90091761A /* Simperium.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5E8D33A1831237500AE2C5A;
+			remoteInfo = UnitTests;
+		};
 		B5CE4ACD183D3CA90091761A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5CE4AC6183D3CA90091761A /* Simperium.xcodeproj */;
@@ -45,13 +53,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 264CD908135DFD7A00C51BAD;
 			remoteInfo = IntegrationTests;
-		};
-		B5CE4AD1183D3CA90091761A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5CE4AC6183D3CA90091761A /* Simperium.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B5E8D33A1831237500AE2C5A;
-			remoteInfo = UnitTests;
 		};
 		B5CE4AD3183D3CD20091761A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -83,14 +84,16 @@
 		24E7D3FD1797735200D54680 /* SDMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDMasterViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		24E7D4071797752700D54680 /* SDCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SDCoreDataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		24E7D4081797752700D54680 /* SDCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDCoreDataManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		24E7D40F1797758900D54680 /* SDTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SDTask.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		24E7D4101797758900D54680 /* SDTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SDTask.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		24E7D5CD179776AE00D54680 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		24E7D5CF179776B600D54680 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		24E7D5D1179776BE00D54680 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		24E7D5D3179776C500D54680 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		24E7D5D5179776D500D54680 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		24E7D5D7179776EF00D54680 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		B570FBB2184CC1CC00935FD1 /* SDTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTask.h; sourceTree = "<group>"; };
+		B570FBB3184CC1CC00935FD1 /* SDTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTask.m; sourceTree = "<group>"; };
+		B570FBB5184CC1CD00935FD1 /* SDSubTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSubTask.h; sourceTree = "<group>"; };
+		B570FBB6184CC1CD00935FD1 /* SDSubTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSubTask.m; sourceTree = "<group>"; };
 		B5CE4AC6183D3CA90091761A /* Simperium.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Simperium.xcodeproj; path = "../simperium-ios/Simperium.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,8 +196,10 @@
 		24E7D4131797759800D54680 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				24E7D40F1797758900D54680 /* SDTask.h */,
-				24E7D4101797758900D54680 /* SDTask.m */,
+				B570FBB2184CC1CC00935FD1 /* SDTask.h */,
+				B570FBB3184CC1CC00935FD1 /* SDTask.m */,
+				B570FBB5184CC1CD00935FD1 /* SDSubTask.h */,
+				B570FBB6184CC1CD00935FD1 /* SDSubTask.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -220,8 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				B5CE4ACE183D3CA90091761A /* libSimperium.a */,
-				B5CE4AD0183D3CA90091761A /* IntegrationTests.xctest */,
-				B5CE4AD2183D3CA90091761A /* UnitTests.xctest */,
+				B5CE4AD0183D3CA90091761A /* SimperiumTests.octest */,
+				B570FBC9184CEE4900935FD1 /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,6 +261,11 @@
 				CLASSPREFIX = SD;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Lantean;
+				TargetAttributes = {
+					24E7D3D81797735200D54680 = {
+						DevelopmentTeam = QXKWK6Q52N;
+					};
+				};
 			};
 			buildConfigurationList = 24E7D3D41797735200D54680 /* Build configuration list for PBXProject "SimperiumDebug" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -281,6 +291,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B570FBC9184CEE4900935FD1 /* UnitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.xctest;
+			remoteRef = B570FBC8184CEE4900935FD1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B5CE4ACE183D3CA90091761A /* libSimperium.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -288,18 +305,11 @@
 			remoteRef = B5CE4ACD183D3CA90091761A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B5CE4AD0183D3CA90091761A /* IntegrationTests.xctest */ = {
+		B5CE4AD0183D3CA90091761A /* SimperiumTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = IntegrationTests.xctest;
 			remoteRef = B5CE4ACF183D3CA90091761A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B5CE4AD2183D3CA90091761A /* UnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.xctest;
-			remoteRef = B5CE4AD1183D3CA90091761A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -328,8 +338,9 @@
 				24E7D3EF1797735200D54680 /* SimperiumDemoAppDelegate.m in Sources */,
 				24E7D3FB1797735200D54680 /* SimperiumDemo.xcdatamodeld in Sources */,
 				24E7D3FE1797735200D54680 /* SDMasterViewController.m in Sources */,
+				B570FBB4184CC1CC00935FD1 /* SDTask.m in Sources */,
+				B570FBB7184CC1CD00935FD1 /* SDSubTask.m in Sources */,
 				24E7D4091797752700D54680 /* SDCoreDataManager.m in Sources */,
-				24E7D4111797758A00D54680 /* SDTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,12 +433,15 @@
 		24E7D4051797735200D54680 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimperiumDemo/SimperiumDebug-Prefix.pch";
 				INFOPLIST_FILE = "SimperiumDemo/SimperiumDebug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = SimperiumDebug;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -435,12 +449,15 @@
 		24E7D4061797735200D54680 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimperiumDemo/SimperiumDebug-Prefix.pch";
 				INFOPLIST_FILE = "SimperiumDemo/SimperiumDebug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = SimperiumDebug;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
