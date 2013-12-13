@@ -7,6 +7,7 @@
 //
 
 #import "SDMasterViewController.h"
+#import "SDDetailViewController.h"
 
 #import "SDCoreDataManager.h"
 #import "SDTask.h"
@@ -18,13 +19,18 @@
 #pragma mark Constants
 #pragma mark ====================================================================================
 
+//NSString* const kAppId				= @"possessions-consideration-f1f";
+//NSString* const kAPIKey				= @"3d783f77d20843438124fabcee85b767";
+
 NSString* const kAppId				= @"donor-date-4b8";
 NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
-NSInteger const kEntitiesBlast		= 60;
-NSInteger const kSubEntitiesRatio	= 10;
+NSInteger const kEntitiesBlast		= 10;
+NSInteger const kSubEntitiesRatio	= 1;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
+
+BOOL const kPushDetails				= false;
 
 
 #pragma mark ====================================================================================
@@ -93,10 +99,20 @@ NSInteger const kEntitiesToDelete	= 1;
 	
 	// Refresh the counter each time an object changes
 	NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(refreshCounter:) name:NSManagedObjectContextDidSaveNotification object:coreDataManager.simperium.writerManagedObjectContext];
+	[nc addObserver:self selector:@selector(refreshCounter:) name:NSManagedObjectContextObjectsDidChangeNotification object:coreDataManager.simperium.writerManagedObjectContext];
 	
 	// Refresh the counter now please!
 	[self refreshCounter:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Details"])
+	{
+        NSIndexPath *indexPath			= [self.tableView indexPathForSelectedRow];
+        SDDetailViewController* details = (SDDetailViewController*)segue.destinationViewController;
+		details.task					= [self.fetchedResultsController objectAtIndexPath:indexPath];
+    }
 }
 
 
@@ -301,10 +317,17 @@ NSInteger const kEntitiesToDelete	= 1;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	NSManagedObject* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
-    NSManagedObject* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	[self updateObjectWithID:object.objectID];
+	if(kPushDetails)
+	{
+		[self performSegueWithIdentifier:@"Details" sender:self];
+	}
+	else
+	{
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[self updateObjectWithID:object.objectID];
+	}
 }
 
 
