@@ -7,6 +7,7 @@
 //
 
 #import "SDCoreDataManager.h"
+#import "SDTask.h"
 
 
 
@@ -85,9 +86,9 @@
 
 - (void)startupSimperiumWithAppId:(NSString*)appId APIKey:(NSString*)APIKey rootViewController:(UIViewController*)rootViewController
 {
-	self.simperium = [[Simperium alloc] initWithRootViewController:rootViewController];
+	self.simperium = [[Simperium alloc] initWithModel:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
 	self.simperium.verboseLoggingEnabled = YES;
-	[self.simperium startWithAppID:appId APIKey:APIKey model:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
+	[self.simperium authenticateWithAppID:appId APIKey:APIKey rootViewController:rootViewController];
 }
 
 - (void)saveContext
