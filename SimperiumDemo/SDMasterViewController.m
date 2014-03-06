@@ -200,10 +200,10 @@ BOOL const kPushDetails				= false;
 		NSFetchRequest* request	= [[NSFetchRequest alloc] init];
 		request.entity			= [NSEntityDescription entityForName:NSStringFromClass([SDTask class]) inManagedObjectContext:self.privateContext];
 		
-		NSArray* fetchedObjects = [self.privateContext executeFetchRequest:request error:nil];
+		NSUInteger count = [self.privateContext countForFetchRequest:request error:nil];
 
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.numberLabel.text = [NSString stringWithFormat:@"Number of Objects: %d", fetchedObjects.count];
+			self.numberLabel.text = [NSString stringWithFormat:@"Number of Objects: %d", count];
 		});
 	}];
 }
