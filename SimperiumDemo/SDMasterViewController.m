@@ -19,14 +19,16 @@
 #pragma mark Constants
 #pragma mark ====================================================================================
 
-//NSString* const kAppId				= @"possessions-consideration-f1f";
-//NSString* const kAPIKey				= @"3d783f77d20843438124fabcee85b767";
+// Sandbox
+NSString* const kAppId				= @"sequence-swim-93b";
+NSString* const kAPIKey				= @"9e50a075384c4d6a9f841237e239b440";
 
-NSString* const kAppId				= @"donor-date-4b8";
-NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
+// Live
+//NSString* const kAppId				= @"donor-date-4b8";
+//NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
-NSInteger const kEntitiesBlast		= 10;
-NSInteger const kSubEntitiesRatio	= 1;
+NSInteger const kEntitiesBlast		= 10000;
+NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
 
@@ -73,12 +75,13 @@ BOOL const kPushDetails				= false;
 	// Setup the UI
 	UIBarButtonItem* networkButton				= [[UIBarButtonItem alloc] initWithTitle:@"NW Off"		style:UIBarButtonItemStyleBordered target:self action:@selector(toggleNetwork:)];
 	UIBarButtonItem* interfaceButton			= [[UIBarButtonItem alloc] initWithTitle:@"UI Off"		style:UIBarButtonItemStyleBordered target:self action:@selector(toggleFetch:)];
+	UIBarButtonItem* logoutButton				= [[UIBarButtonItem alloc] initWithTitle:@"Logout"		style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
 	
 	UIBarButtonItem* singleAddButton			= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay		target:self action:@selector(insertItemSingle:)];
 	UIBarButtonItem* batchAddButton				= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(insertItemBatch:)];
 	UIBarButtonItem* delAllButton				= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash		target:self action:@selector(delAllItems:)];
 
-	self.navigationItem.leftBarButtonItems		= @[networkButton, interfaceButton];
+	self.navigationItem.leftBarButtonItems		= @[networkButton, interfaceButton, logoutButton];
 	self.navigationItem.rightBarButtonItems		= @[batchAddButton, singleAddButton, delAllButton];
 	
 	// Start Simperium
@@ -128,6 +131,11 @@ BOOL const kPushDetails				= false;
 	simperium.networkEnabled		= enabled;
 	UIBarButtonItem* networkButton	= (UIBarButtonItem*)sender;
 	networkButton.title				= (enabled ? @"NW On" : @"NW Off");
+}
+
+- (IBAction)logout:(id)sender
+{
+	[[[SDCoreDataManager sharedInstance] simperium] signOutAndRemoveLocalData:YES completion:nil];
 }
 
 -(IBAction)toggleFetch:(id)sender
