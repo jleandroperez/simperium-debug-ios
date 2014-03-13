@@ -27,7 +27,7 @@ NSString* const kAPIKey				= @"9e50a075384c4d6a9f841237e239b440";
 //NSString* const kAppId				= @"donor-date-4b8";
 //NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
-NSInteger const kEntitiesBlast		= 10000;
+NSInteger const kEntitiesBlast		= 250000; //10000;
 NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
@@ -75,7 +75,7 @@ BOOL const kPushDetails				= false;
 	// Setup the UI
 	UIBarButtonItem* networkButton				= [[UIBarButtonItem alloc] initWithTitle:@"NW Off"		style:UIBarButtonItemStyleBordered target:self action:@selector(toggleNetwork:)];
 	UIBarButtonItem* interfaceButton			= [[UIBarButtonItem alloc] initWithTitle:@"UI Off"		style:UIBarButtonItemStyleBordered target:self action:@selector(toggleFetch:)];
-	UIBarButtonItem* logoutButton				= [[UIBarButtonItem alloc] initWithTitle:@"Logout"		style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
+	UIBarButtonItem* logoutButton				= [[UIBarButtonItem alloc] initWithTitle:@"Login"		style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
 	
 	UIBarButtonItem* singleAddButton			= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay		target:self action:@selector(insertItemSingle:)];
 	UIBarButtonItem* batchAddButton				= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(insertItemBatch:)];
@@ -86,9 +86,7 @@ BOOL const kPushDetails				= false;
 	
 	// Start Simperium
 	SDCoreDataManager* coreDataManager			= [SDCoreDataManager sharedInstance];
-	[coreDataManager startupSimperiumWithAppId:kAppId APIKey:kAPIKey rootViewController:self];
-	coreDataManager.simperium.networkEnabled	= NO;
-	coreDataManager.simperium.verboseLoggingEnabled	= YES;
+
 	
 	// New local private MOC: Insertions / Update's
 	NSManagedObjectContext* privateContext		= [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
@@ -135,7 +133,19 @@ BOOL const kPushDetails				= false;
 
 - (IBAction)logout:(id)sender
 {
-	[[[SDCoreDataManager sharedInstance] simperium] signOutAndRemoveLocalData:YES completion:nil];
+	UIBarButtonItem* networkButton	= (UIBarButtonItem*)sender;
+	Simperium *simperium = [[SDCoreDataManager sharedInstance] simperium];
+	
+	if (simperium.user.authenticated)
+	{
+		[simperium signOutAndRemoveLocalData:YES completion:nil];
+		networkButton.title = @"Login";
+	}
+	else
+	{
+		[simperium authenticateWithAppID:kAppId APIKey:kAPIKey rootViewController:self];
+		networkButton.title = @"Logout";
+	}
 }
 
 -(IBAction)toggleFetch:(id)sender

@@ -40,6 +40,17 @@
 	return _instance;
 }
 
+- (id)init
+{
+	if ((self = [super init]))
+	{
+		self.simperium = [[Simperium alloc] initWithModel:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
+		self.simperium.verboseLoggingEnabled = YES;
+	}
+	
+	return self;
+}
+
 - (NSManagedObjectModel*)managedObjectModel
 {
     if (_managedObjectModel != nil)
@@ -81,14 +92,6 @@
     }
     
     return _persistentStoreCoordinator;
-}
-
-
-- (void)startupSimperiumWithAppId:(NSString*)appId APIKey:(NSString*)APIKey rootViewController:(UIViewController*)rootViewController
-{
-	self.simperium = [[Simperium alloc] initWithModel:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
-	self.simperium.verboseLoggingEnabled = YES;
-	[self.simperium authenticateWithAppID:appId APIKey:APIKey rootViewController:rootViewController];
 }
 
 - (void)saveContext
