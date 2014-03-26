@@ -32,6 +32,7 @@ NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
 
+NSTimeInterval kRefreshDelay		= 8;
 BOOL const kPushDetails				= false;
 
 
@@ -46,6 +47,7 @@ BOOL const kPushDetails				= false;
 @property (strong, nonatomic, readwrite) NSFetchedResultsController	*fetchedResultsController;
 @property (strong, nonatomic, readwrite) NSManagedObjectContext		*privateContext;
 @property (strong, nonatomic, readwrite) NSManagedObjectContext		*interfaceContext;
+@property (assign, nonatomic, readwrite) BOOL						shouldRefreshCounter;
 @end
 
 
@@ -173,6 +175,7 @@ BOOL const kPushDetails				= false;
 -(void)insertEntities:(NSUInteger)number
 {
 	[self.privateContext performBlock:^{
+		
 		for(NSInteger count = -1; ++count < number; )
 		{
 			SDTask* task	= [NSEntityDescription insertNewObjectForEntityForName:@"SDTask" inManagedObjectContext:self.privateContext];
@@ -213,7 +216,31 @@ BOOL const kPushDetails				= false;
 
 -(void)refreshCounter:(id)sender
 {
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRefreshDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[self refreshCounterAfterDelay];
+	});
+}
+
+-(void)refreshCounterAfterDelay
+{
+	_shouldRefreshCounter = YES;
+	
+	__block BOOL proceed = NO;
+	
 	[self.privateContext performBlock:^{
+
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			if (_shouldRefreshCounter)
+			{
+				proceed = YES;
+				_shouldRefreshCounter = NO;
+			}
+		});
+		
+		if (!proceed)
+		{
+			return;
+		}
 		
 		NSFetchRequest* request	= [[NSFetchRequest alloc] init];
 		request.entity			= [NSEntityDescription entityForName:NSStringFromClass([SDTask class]) inManagedObjectContext:self.privateContext];
