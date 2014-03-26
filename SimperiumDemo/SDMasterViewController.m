@@ -202,7 +202,7 @@ BOOL const kPushDetails				= false;
 
 -(IBAction)insertItemBatch:(id)sender
 {
-	NSLog(@"<> Inserting %d Model Object. Total: %ld KB", (int)kEntitiesBlast, (kEntityByteSize * kEntitiesBlast / 1024));
+	NSLog(@"<> Inserting %d Model Object. Total: %d KB", (int)kEntitiesBlast, (int)(kEntityByteSize * kEntitiesBlast / 1024));
 		
 	[self insertEntities:kEntitiesBlast];
 	[self save];
@@ -287,7 +287,7 @@ BOOL const kPushDetails				= false;
 		
 		[self save];
 		
-		NSLog(@"<> Deleted %d Objects", result.count);
+		NSLog(@"<> Deleted %lu Objects", (unsigned long)result.count);
 	}];
 }
 
