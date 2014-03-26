@@ -20,12 +20,12 @@
 #pragma mark ====================================================================================
 
 // Sandbox
-NSString* const kAppId				= @"sequence-swim-93b";
-NSString* const kAPIKey				= @"9e50a075384c4d6a9f841237e239b440";
+//NSString* const kAppId				= @"sequence-swim-93b";
+//NSString* const kAPIKey				= @"9e50a075384c4d6a9f841237e239b440";
 
 // Live
-//NSString* const kAppId				= @"donor-date-4b8";
-//NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
+NSString* const kAppId				= @"donor-date-4b8";
+NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
 NSInteger const kEntitiesBlast		= 250000; //10000;
 NSInteger const kSubEntitiesRatio	= 0;
@@ -85,8 +85,7 @@ BOOL const kPushDetails				= false;
 	self.navigationItem.rightBarButtonItems		= @[batchAddButton, singleAddButton, delAllButton];
 	
 	// Start Simperium
-	SDCoreDataManager* coreDataManager			= [SDCoreDataManager sharedInstance];
-
+	SDCoreDataManager* coreDataManager			= [SDCoreDataManager sharedInstance];	
 	
 	// New local private MOC: Insertions / Update's
 	NSManagedObjectContext* privateContext		= [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
@@ -144,6 +143,7 @@ BOOL const kPushDetails				= false;
 	else
 	{
 		[simperium authenticateWithAppID:kAppId APIKey:kAPIKey rootViewController:self];
+		simperium.networkEnabled = NO;
 		networkButton.title = @"Logout";
 	}
 }
@@ -182,7 +182,7 @@ BOOL const kPushDetails				= false;
 			for(NSInteger count = -1; ++count < kSubEntitiesRatio; )
 			{
 				SDSubTask* subtask = [NSEntityDescription insertNewObjectForEntityForName:@"SDSubTask" inManagedObjectContext:self.privateContext];
-				subtask.title = [NSString stringWithFormat:@"Subtask [%d]", count];
+				subtask.title = [NSString stringWithFormat:@"Subtask [%ld]", (long)count];
 				[task addSubtasksObject:subtask];
 			}
 		}
@@ -199,7 +199,7 @@ BOOL const kPushDetails				= false;
 
 -(IBAction)insertItemBatch:(id)sender
 {
-	NSLog(@"<> Inserting %d Model Object. Total: %d KB", kEntitiesBlast, (kEntityByteSize * kEntitiesBlast / 1024));
+	NSLog(@"<> Inserting %d Model Object. Total: %ld KB", (int)kEntitiesBlast, (kEntityByteSize * kEntitiesBlast / 1024));
 		
 	[self insertEntities:kEntitiesBlast];
 	[self save];
@@ -221,7 +221,7 @@ BOOL const kPushDetails				= false;
 		NSUInteger count = [self.privateContext countForFetchRequest:request error:nil];
 
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.numberLabel.text = [NSString stringWithFormat:@"Number of Objects: %d", count];
+			self.numberLabel.text = [NSString stringWithFormat:@"Number of Objects: %lu", (unsigned long)count];
 		});
 	}];
 }
