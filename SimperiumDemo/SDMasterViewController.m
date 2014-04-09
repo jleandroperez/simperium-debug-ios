@@ -7,6 +7,7 @@
 //
 
 #import "SDMasterViewController.h"
+#import "SDDetailViewController.h"
 
 #import "SDCoreDataManager.h"
 #import "SDTask.h"
@@ -18,13 +19,21 @@
 #pragma mark Constants
 #pragma mark ====================================================================================
 
+// Sandbox
+//NSString* const kAppId				= @"sequence-swim-93b";
+//NSString* const kAPIKey				= @"9e50a075384c4d6a9f841237e239b440";
+
+// Live
 NSString* const kAppId				= @"donor-date-4b8";
 NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
-NSInteger const kEntitiesBlast		= 60;
-NSInteger const kSubEntitiesRatio	= 10;
+NSInteger const kEntitiesBlast		= 250000; //10000;
+NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
+
+NSTimeInterval kRefreshDelay		= 8;
+BOOL const kPushDetails				= false;
 
 
 #pragma mark ====================================================================================
@@ -38,6 +47,7 @@ NSInteger const kEntitiesToDelete	= 1;
 @property (strong, nonatomic, readwrite) NSFetchedResultsController	*fetchedResultsController;
 @property (strong, nonatomic, readwrite) NSManagedObjectContext		*privateContext;
 @property (strong, nonatomic, readwrite) NSManagedObjectContext		*interfaceContext;
+@property (assign, nonatomic, readwrite) BOOL						shouldRefreshCounter;
 @end
 
 
@@ -67,19 +77,17 @@ NSInteger const kEntitiesToDelete	= 1;
 	// Setup the UI
 	UIBarButtonItem* networkButton				= [[UIBarButtonItem alloc] initWithTitle:@"NW Off"		style:UIBarButtonItemStyleBordered target:self action:@selector(toggleNetwork:)];
 	UIBarButtonItem* interfaceButton			= [[UIBarButtonItem alloc] initWithTitle:@"UI Off"		style:UIBarButtonItemStyleBordered target:self action:@selector(toggleFetch:)];
+	UIBarButtonItem* logoutButton				= [[UIBarButtonItem alloc] initWithTitle:@"Login"		style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
 	
 	UIBarButtonItem* singleAddButton			= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay		target:self action:@selector(insertItemSingle:)];
 	UIBarButtonItem* batchAddButton				= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(insertItemBatch:)];
 	UIBarButtonItem* delAllButton				= [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash		target:self action:@selector(delAllItems:)];
 
-	self.navigationItem.leftBarButtonItems		= @[networkButton, interfaceButton];
+	self.navigationItem.leftBarButtonItems		= @[networkButton, interfaceButton, logoutButton];
 	self.navigationItem.rightBarButtonItems		= @[batchAddButton, singleAddButton, delAllButton];
 	
 	// Start Simperium
-	SDCoreDataManager* coreDataManager			= [SDCoreDataManager sharedInstance];
-	[coreDataManager startupSimperiumWithAppId:kAppId APIKey:kAPIKey rootViewController:self];
-	coreDataManager.simperium.networkEnabled	= NO;
-	coreDataManager.simperium.verboseLoggingEnabled	= YES;
+	SDCoreDataManager* coreDataManager			= [SDCoreDataManager sharedInstance];	
 	
 	// New local private MOC: Insertions / Update's
 	NSManagedObjectContext* privateContext		= [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
@@ -93,10 +101,20 @@ NSInteger const kEntitiesToDelete	= 1;
 	
 	// Refresh the counter each time an object changes
 	NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(refreshCounter:) name:NSManagedObjectContextDidSaveNotification object:coreDataManager.simperium.writerManagedObjectContext];
+	[nc addObserver:self selector:@selector(refreshCounter:) name:NSManagedObjectContextObjectsDidChangeNotification object:coreDataManager.simperium.writerManagedObjectContext];
 	
 	// Refresh the counter now please!
 	[self refreshCounter:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Details"])
+	{
+        NSIndexPath *indexPath			= [self.tableView indexPathForSelectedRow];
+        SDDetailViewController* details = (SDDetailViewController*)segue.destinationViewController;
+		details.task					= [self.fetchedResultsController objectAtIndexPath:indexPath];
+    }
 }
 
 
@@ -112,6 +130,24 @@ NSInteger const kEntitiesToDelete	= 1;
 	simperium.networkEnabled		= enabled;
 	UIBarButtonItem* networkButton	= (UIBarButtonItem*)sender;
 	networkButton.title				= (enabled ? @"NW On" : @"NW Off");
+}
+
+- (IBAction)logout:(id)sender
+{
+	UIBarButtonItem* networkButton	= (UIBarButtonItem*)sender;
+	Simperium *simperium = [[SDCoreDataManager sharedInstance] simperium];
+	
+	if (simperium.user.authenticated)
+	{
+		[simperium signOutAndRemoveLocalData:YES completion:nil];
+		networkButton.title = @"Login";
+	}
+	else
+	{
+		[simperium authenticateWithAppID:kAppId APIKey:kAPIKey rootViewController:self];
+		simperium.networkEnabled = NO;
+		networkButton.title = @"Logout";
+	}
 }
 
 -(IBAction)toggleFetch:(id)sender
@@ -139,6 +175,7 @@ NSInteger const kEntitiesToDelete	= 1;
 -(void)insertEntities:(NSUInteger)number
 {
 	[self.privateContext performBlock:^{
+		
 		for(NSInteger count = -1; ++count < number; )
 		{
 			SDTask* task	= [NSEntityDescription insertNewObjectForEntityForName:@"SDTask" inManagedObjectContext:self.privateContext];
@@ -148,7 +185,7 @@ NSInteger const kEntitiesToDelete	= 1;
 			for(NSInteger count = -1; ++count < kSubEntitiesRatio; )
 			{
 				SDSubTask* subtask = [NSEntityDescription insertNewObjectForEntityForName:@"SDSubTask" inManagedObjectContext:self.privateContext];
-				subtask.title = [NSString stringWithFormat:@"Subtask [%d]", count];
+				subtask.title = [NSString stringWithFormat:@"Subtask [%ld]", (long)count];
 				[task addSubtasksObject:subtask];
 			}
 		}
@@ -165,7 +202,7 @@ NSInteger const kEntitiesToDelete	= 1;
 
 -(IBAction)insertItemBatch:(id)sender
 {
-	NSLog(@"<> Inserting %d Model Object. Total: %d KB", kEntitiesBlast, (kEntityByteSize * kEntitiesBlast / 1024));
+	NSLog(@"<> Inserting %d Model Object. Total: %d KB", (int)kEntitiesBlast, (int)(kEntityByteSize * kEntitiesBlast / 1024));
 		
 	[self insertEntities:kEntitiesBlast];
 	[self save];
@@ -179,15 +216,39 @@ NSInteger const kEntitiesToDelete	= 1;
 
 -(void)refreshCounter:(id)sender
 {
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kRefreshDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[self refreshCounterAfterDelay];
+	});
+}
+
+-(void)refreshCounterAfterDelay
+{
+	_shouldRefreshCounter = YES;
+	
+	__block BOOL proceed = NO;
+	
 	[self.privateContext performBlock:^{
+
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			if (_shouldRefreshCounter)
+			{
+				proceed = YES;
+				_shouldRefreshCounter = NO;
+			}
+		});
+		
+		if (!proceed)
+		{
+			return;
+		}
 		
 		NSFetchRequest* request	= [[NSFetchRequest alloc] init];
 		request.entity			= [NSEntityDescription entityForName:NSStringFromClass([SDTask class]) inManagedObjectContext:self.privateContext];
 		
-		NSArray* fetchedObjects = [self.privateContext executeFetchRequest:request error:nil];
+		NSUInteger count = [self.privateContext countForFetchRequest:request error:nil];
 
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self.numberLabel.text = [NSString stringWithFormat:@"Number of Objects: %d", fetchedObjects.count];
+			self.numberLabel.text = [NSString stringWithFormat:@"Number of Objects: %lu", (unsigned long)count];
 		});
 	}];
 }
@@ -226,7 +287,7 @@ NSInteger const kEntitiesToDelete	= 1;
 		
 		[self save];
 		
-		NSLog(@"<> Deleted %d Objects", result.count);
+		NSLog(@"<> Deleted %lu Objects", (unsigned long)result.count);
 	}];
 }
 
@@ -301,10 +362,17 @@ NSInteger const kEntitiesToDelete	= 1;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	NSManagedObject* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
-    NSManagedObject* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	[self updateObjectWithID:object.objectID];
+	if(kPushDetails)
+	{
+		[self performSegueWithIdentifier:@"Details" sender:self];
+	}
+	else
+	{
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[self updateObjectWithID:object.objectID];
+	}
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "SDCoreDataManager.h"
+#import "SDTask.h"
 
 
 
@@ -37,6 +38,17 @@
 	});
 	
 	return _instance;
+}
+
+- (id)init
+{
+	if ((self = [super init]))
+	{
+		self.simperium = [[Simperium alloc] initWithModel:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
+		self.simperium.verboseLoggingEnabled = YES;
+	}
+	
+	return self;
 }
 
 - (NSManagedObjectModel*)managedObjectModel
@@ -70,24 +82,21 @@
         return _persistentStoreCoordinator;
     }
     
+	NSDictionary *options =@{
+		NSMigratePersistentStoresAutomaticallyOption	: @(YES),
+		NSInferMappingModelAutomaticallyOption			: @(YES)
+	};
+	
     NSURL* storeURL	= [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"SimperiumDemo.sqlite"];
     NSError* error	= nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
 	{
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
     return _persistentStoreCoordinator;
-}
-
-
-- (void)startupSimperiumWithAppId:(NSString*)appId APIKey:(NSString*)APIKey rootViewController:(UIViewController*)rootViewController
-{
-	self.simperium = [[Simperium alloc] initWithRootViewController:rootViewController];
-	self.simperium.verboseLoggingEnabled = YES;
-	[self.simperium startWithAppID:appId APIKey:APIKey model:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
 }
 
 - (void)saveContext
