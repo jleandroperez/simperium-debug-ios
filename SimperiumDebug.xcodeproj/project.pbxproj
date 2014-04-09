@@ -30,7 +30,6 @@
 		B570FBB4184CC1CC00935FD1 /* SDTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B570FBB3184CC1CC00935FD1 /* SDTask.m */; };
 		B570FBB7184CC1CD00935FD1 /* SDSubTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B570FBB6184CC1CD00935FD1 /* SDSubTask.m */; };
 		B5CE4AD5183D3CD50091761A /* libSimperium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CE4ACE183D3CA90091761A /* libSimperium.a */; };
-		B5DE0E09184FADE90080C44D /* SDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0E08184FADE90080C44D /* SDDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +95,6 @@
 		B570FBB5184CC1CD00935FD1 /* SDSubTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSubTask.h; sourceTree = "<group>"; };
 		B570FBB6184CC1CD00935FD1 /* SDSubTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSubTask.m; sourceTree = "<group>"; };
 		B5CE4AC6183D3CA90091761A /* Simperium.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Simperium.xcodeproj; path = "../simperium-ios/Simperium.xcodeproj"; sourceTree = "<group>"; };
-		B5DE0E07184FADE90080C44D /* SDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDetailViewController.h; sourceTree = "<group>"; };
-		B5DE0E08184FADE90080C44D /* SDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,8 +217,6 @@
 			children = (
 				24E7D3FC1797735200D54680 /* SDMasterViewController.h */,
 				24E7D3FD1797735200D54680 /* SDMasterViewController.m */,
-				B5DE0E07184FADE90080C44D /* SDDetailViewController.h */,
-				B5DE0E08184FADE90080C44D /* SDDetailViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -230,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE4ACE183D3CA90091761A /* libSimperium.a */,
-				B5CE4AD0183D3CA90091761A /* IntegrationTests.xctest */,
+				B5CE4AD0183D3CA90091761A /* SimperiumTests.octest */,
 				B570FBC9184CEE4900935FD1 /* UnitTests.xctest */,
 			);
 			name = Products;
@@ -310,7 +305,7 @@
 			remoteRef = B5CE4ACD183D3CA90091761A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B5CE4AD0183D3CA90091761A /* IntegrationTests.xctest */ = {
+		B5CE4AD0183D3CA90091761A /* SimperiumTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = IntegrationTests.xctest;
@@ -343,7 +338,6 @@
 				24E7D3EF1797735200D54680 /* SimperiumDemoAppDelegate.m in Sources */,
 				24E7D3FB1797735200D54680 /* SimperiumDemo.xcdatamodeld in Sources */,
 				24E7D3FE1797735200D54680 /* SDMasterViewController.m in Sources */,
-				B5DE0E09184FADE90080C44D /* SDDetailViewController.m in Sources */,
 				B570FBB4184CC1CC00935FD1 /* SDTask.m in Sources */,
 				B570FBB7184CC1CD00935FD1 /* SDSubTask.m in Sources */,
 				24E7D4091797752700D54680 /* SDCoreDataManager.m in Sources */,

@@ -20,6 +20,7 @@
 
 + (instancetype)sharedInstance;
 
+- (void)startupSimperiumWithAppId:(NSString*)appId APIKey:(NSString*)APIKey rootViewController:(UIViewController*)rootViewController;
 - (void)saveContext;
 
 @end
