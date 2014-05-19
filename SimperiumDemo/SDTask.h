@@ -2,14 +2,13 @@
 //  SDTask.h
 //  SimperiumDebug
 //
-//  Created by Jorge Leandro Perez on 12/2/13.
-//  Copyright (c) 2013 Lantean. All rights reserved.
+//  Created by Jorge Leandro Perez on 4/16/14.
+//  Copyright (c) 2014 Lantean. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <Simperium/Simperium.h>
-
 
 @class SDSubTask;
 
@@ -18,6 +17,7 @@
 @property (nonatomic, retain) NSString * payload;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *subtasks;
+@property (nonatomic, retain) SDSubTask *oneSubtask;
 @end
 
 @interface SDTask (CoreDataGeneratedAccessors)

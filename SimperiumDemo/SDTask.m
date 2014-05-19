@@ -2,8 +2,8 @@
 //  SDTask.m
 //  SimperiumDebug
 //
-//  Created by Jorge Leandro Perez on 12/2/13.
-//  Copyright (c) 2013 Lantean. All rights reserved.
+//  Created by Jorge Leandro Perez on 4/16/14.
+//  Copyright (c) 2014 Lantean. All rights reserved.
 //
 
 #import "SDTask.h"
@@ -12,8 +12,11 @@
 
 @implementation SDTask
 
+@dynamic ghostData;
 @dynamic payload;
+@dynamic simperiumKey;
 @dynamic title;
 @dynamic subtasks;
+@dynamic oneSubtask;
 
 @end

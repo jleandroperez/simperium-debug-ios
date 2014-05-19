@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="SDSubTask" representedClassName="SDSubTask" parentEntity="SPManagedObject" syncable="YES">
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDTask" inverseName="subtasks" inverseEntity="SDTask" syncable="YES"/>
-    </entity>
-    <entity name="SDTask" representedClassName="SDTask" parentEntity="SPManagedObject" syncable="YES">
-        <attribute name="payload" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDSubTask" inverseName="task" inverseEntity="SDSubTask" syncable="YES"/>
-    </entity>
-    <entity name="SPManagedObject" representedClassName="SPManagedObject" isAbstract="YES" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SDSubTask" representedClassName="SDSubTask" syncable="YES">
         <attribute name="ghostData" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="simperiumKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="oneTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDTask" inverseName="oneSubtask" inverseEntity="SDTask" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDTask" inverseName="subtasks" inverseEntity="SDTask" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="simperiumKey"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
+    <entity name="SDTask" representedClassName="SDTask" syncable="YES">
+        <attribute name="ghostData" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="payload" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="simperiumKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="oneSubtask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDSubTask" inverseName="oneTask" inverseEntity="SDSubTask" syncable="YES"/>
+        <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDSubTask" inverseName="task" inverseEntity="SDSubTask" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="simperiumKey"/>
+            </compoundIndex>
+        </compoundIndexes>
     </entity>
     <elements>
-        <element name="SDTask" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="SPManagedObject" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="SDSubTask" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SDSubTask" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="SDTask" positionX="0" positionY="0" width="128" height="133"/>
     </elements>
 </model>
