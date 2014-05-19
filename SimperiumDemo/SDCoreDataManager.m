@@ -45,7 +45,7 @@
 	if ((self = [super init]))
 	{
 		self.simperium = [[Simperium alloc] initWithModel:self.managedObjectModel context:self.managedObjectContext coordinator:self.persistentStoreCoordinator];
-		self.simperium.verboseLoggingEnabled = YES;
+		self.simperium.verboseLoggingEnabled = YES;        
 	}
 	
 	return self;

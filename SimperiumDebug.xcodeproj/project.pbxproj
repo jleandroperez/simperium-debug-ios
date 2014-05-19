@@ -27,8 +27,8 @@
 		24E7D5D4179776C500D54680 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D3179776C500D54680 /* SystemConfiguration.framework */; };
 		24E7D5D6179776D500D54680 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D5179776D500D54680 /* libz.dylib */; };
 		24E7D5D8179776EF00D54680 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E7D5D7179776EF00D54680 /* libicucore.dylib */; };
-		B570FBB4184CC1CC00935FD1 /* SDTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B570FBB3184CC1CC00935FD1 /* SDTask.m */; };
 		B570FBB7184CC1CD00935FD1 /* SDSubTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B570FBB6184CC1CD00935FD1 /* SDSubTask.m */; };
+		B57FA3A318FF3DC000957205 /* SDTask.m in Sources */ = {isa = PBXBuildFile; fileRef = B57FA3A218FF3DC000957205 /* SDTask.m */; };
 		B5CE4AD5183D3CD50091761A /* libSimperium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CE4ACE183D3CA90091761A /* libSimperium.a */; };
 		B5DE0E09184FADE90080C44D /* SDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0E08184FADE90080C44D /* SDDetailViewController.m */; };
 /* End PBXBuildFile section */
@@ -91,10 +91,10 @@
 		24E7D5D3179776C500D54680 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		24E7D5D5179776D500D54680 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		24E7D5D7179776EF00D54680 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		B570FBB2184CC1CC00935FD1 /* SDTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTask.h; sourceTree = "<group>"; };
-		B570FBB3184CC1CC00935FD1 /* SDTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTask.m; sourceTree = "<group>"; };
 		B570FBB5184CC1CD00935FD1 /* SDSubTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSubTask.h; sourceTree = "<group>"; };
 		B570FBB6184CC1CD00935FD1 /* SDSubTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSubTask.m; sourceTree = "<group>"; };
+		B57FA3A118FF3DC000957205 /* SDTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTask.h; sourceTree = "<group>"; };
+		B57FA3A218FF3DC000957205 /* SDTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTask.m; sourceTree = "<group>"; };
 		B5CE4AC6183D3CA90091761A /* Simperium.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Simperium.xcodeproj; path = "../simperium-ios/Simperium.xcodeproj"; sourceTree = "<group>"; };
 		B5DE0E07184FADE90080C44D /* SDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDetailViewController.h; sourceTree = "<group>"; };
 		B5DE0E08184FADE90080C44D /* SDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDetailViewController.m; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 		24E7D4131797759800D54680 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B570FBB2184CC1CC00935FD1 /* SDTask.h */,
-				B570FBB3184CC1CC00935FD1 /* SDTask.m */,
+				B57FA3A118FF3DC000957205 /* SDTask.h */,
+				B57FA3A218FF3DC000957205 /* SDTask.m */,
 				B570FBB5184CC1CD00935FD1 /* SDSubTask.h */,
 				B570FBB6184CC1CD00935FD1 /* SDSubTask.m */,
 			);
@@ -269,6 +269,11 @@
 				TargetAttributes = {
 					24E7D3D81797735200D54680 = {
 						DevelopmentTeam = QXKWK6Q52N;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -344,8 +349,8 @@
 				24E7D3FB1797735200D54680 /* SimperiumDemo.xcdatamodeld in Sources */,
 				24E7D3FE1797735200D54680 /* SDMasterViewController.m in Sources */,
 				B5DE0E09184FADE90080C44D /* SDDetailViewController.m in Sources */,
-				B570FBB4184CC1CC00935FD1 /* SDTask.m in Sources */,
 				B570FBB7184CC1CD00935FD1 /* SDSubTask.m in Sources */,
+				B57FA3A318FF3DC000957205 /* SDTask.m in Sources */,
 				24E7D4091797752700D54680 /* SDCoreDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +448,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimperiumDemo/SimperiumDebug-Prefix.pch";
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = "SimperiumDemo/SimperiumDebug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -459,6 +466,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimperiumDemo/SimperiumDebug-Prefix.pch";
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = "SimperiumDemo/SimperiumDebug-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";

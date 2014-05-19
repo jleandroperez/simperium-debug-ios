@@ -16,6 +16,8 @@
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1.0];
+
 	return YES;
 }
 
@@ -42,6 +44,15 @@
 - (void)applicationWillTerminate:(UIApplication*)application
 {
 	[[SDCoreDataManager sharedInstance] saveContext];
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    Simperium *simperium = [[SDCoreDataManager sharedInstance] simperium];
+    
+    [simperium backgroundFetchWithCompletion:^(UIBackgroundFetchResult result) {
+        completionHandler(result);
+    }];
 }
 
 @end
