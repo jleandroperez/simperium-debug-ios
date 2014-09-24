@@ -19,10 +19,6 @@
 #pragma mark Constants
 #pragma mark ====================================================================================
 
-// Sandbox
-//NSString* const kAppId				= @"sequence-swim-93b";
-//NSString* const kAPIKey				= @"9e50a075384c4d6a9f841237e239b440";
-
 // Live
 NSString* const kAppId				= @"donor-date-4b8";
 NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
@@ -32,7 +28,7 @@ NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
 
-NSTimeInterval kRefreshDelay		= 8;
+NSTimeInterval kRefreshDelay		= 10;
 BOOL const kPushDetails				= false;
 
 
@@ -85,7 +81,7 @@ BOOL const kPushDetails				= false;
 
 	self.navigationItem.leftBarButtonItems		= @[networkButton, interfaceButton, logoutButton];
 	self.navigationItem.rightBarButtonItems		= @[batchAddButton, singleAddButton, delAllButton];
-	
+    
 	// Start Simperium
 	SDCoreDataManager* coreDataManager			= [SDCoreDataManager sharedInstance];	
 	
@@ -95,8 +91,6 @@ BOOL const kPushDetails				= false;
 	self.privateContext							= privateContext;
 	
 	// Interface MOC
-//	NSManagedObjectContext* interfaceContext	= [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-//	interfaceContext.parentContext				= coreDataManager.managedObjectContext;
 	self.interfaceContext						= coreDataManager.managedObjectContext;
 	
 	// Refresh the counter each time an object changes
@@ -181,7 +175,7 @@ BOOL const kPushDetails				= false;
 			SDTask* task	= [NSEntityDescription insertNewObjectForEntityForName:@"SDTask" inManagedObjectContext:self.privateContext];
 			task.title		= [NSString stringWithFormat:@"Task [%@]", [self.timeFormat stringFromDate:[NSDate date]]];
 			task.payload	= [self payload];
-			
+            
 			for(NSInteger count = -1; ++count < kSubEntitiesRatio; )
 			{
 				SDSubTask* subtask = [NSEntityDescription insertNewObjectForEntityForName:@"SDSubTask" inManagedObjectContext:self.privateContext];
@@ -311,6 +305,7 @@ BOOL const kPushDetails				= false;
 		
 		[self.privateContext performBlock:^{
 			[self.privateContext save:nil];
+            
 			[[SDCoreDataManager sharedInstance] saveContext];
 		}];
 	}];
@@ -363,7 +358,7 @@ BOOL const kPushDetails				= false;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSManagedObject* object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	
+
 	if(kPushDetails)
 	{
 		[self performSegueWithIdentifier:@"Details" sender:self];
