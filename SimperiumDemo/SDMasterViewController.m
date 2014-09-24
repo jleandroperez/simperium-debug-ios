@@ -23,10 +23,12 @@
 NSString* const kAppId				= @"donor-date-4b8";
 NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
-NSInteger const kEntitiesBlast		= 250000; //10000;
+
+NSInteger const kEntitiesBlast		= 1;
 NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
+BOOL const kOneToOneRelationships   = false;
 
 NSTimeInterval kRefreshDelay		= 10;
 BOOL const kPushDetails				= false;
@@ -158,7 +160,7 @@ BOOL const kPushDetails				= false;
 }
 
 -(IBAction)toggleFetch:(id)sender
-{
+{    
 	UIBarButtonItem* fetchButton	= (UIBarButtonItem*)sender;
 	BOOL enabled					= (self.tableView.dataSource != nil);
 	
@@ -195,6 +197,13 @@ BOOL const kPushDetails				= false;
 				subtask.title = [NSString stringWithFormat:@"Subtask [%ld]", (long)count];
 				[task addSubtasksObject:subtask];
 			}
+            
+            if (kOneToOneRelationships)
+            {
+                SDSubTask* subtask = [NSEntityDescription insertNewObjectForEntityForName:@"SDSubTask" inManagedObjectContext:self.privateContext];
+                subtask.title = [NSString stringWithFormat:@"OneSubtask [%ld]", (long)count];
+                task.oneSubtask = subtask;
+            }
 		}
 	}];
 }
