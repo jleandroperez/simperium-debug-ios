@@ -99,6 +99,19 @@ BOOL const kPushDetails				= false;
 	
 	// Refresh the counter now please!
 	[self refreshCounter:nil];
+    
+    SPBucket *bucket = [coreDataManager.simperium bucketForName:NSStringFromClass([SDTask class])];
+    bucket.delegate = self;
+}
+
+- (void)bucketWillStartIndexing:(SPBucket *)bucket
+{
+    NSLog(@"bucketWillStartIndexing:");
+}
+
+- (void)bucketDidFinishIndexing:(SPBucket *)bucket
+{
+    NSLog(@"bucketDidFinishIndexing:");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
