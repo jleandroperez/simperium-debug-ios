@@ -16,6 +16,7 @@
 @dynamic payload;
 @dynamic simperiumKey;
 @dynamic title;
+@dynamic number;
 @dynamic subtasks;
 @dynamic oneSubtask;
 

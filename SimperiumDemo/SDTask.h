@@ -16,6 +16,7 @@
 
 @property (nonatomic, retain) NSString * payload;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSSet *subtasks;
 @property (nonatomic, retain) SDSubTask *oneSubtask;
 @end
