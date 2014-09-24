@@ -105,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24E7D3DF1797735200D54680 /* Foundation.framework in Frameworks */,
 				B5CE4AD5183D3CD50091761A /* libSimperium.a in Frameworks */,
 				24E7D5D8179776EF00D54680 /* libicucore.dylib in Frameworks */,
 				24E7D5D6179776D500D54680 /* libz.dylib in Frameworks */,
@@ -113,7 +114,6 @@
 				24E7D5D0179776B600D54680 /* CFNetwork.framework in Frameworks */,
 				24E7D5CE179776AE00D54680 /* Security.framework in Frameworks */,
 				24E7D3DD1797735200D54680 /* UIKit.framework in Frameworks */,
-				24E7D3DF1797735200D54680 /* Foundation.framework in Frameworks */,
 				24E7D3E11797735200D54680 /* CoreGraphics.framework in Frameworks */,
 				24E7D3E31797735200D54680 /* CoreData.framework in Frameworks */,
 			);
