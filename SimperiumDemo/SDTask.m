@@ -19,5 +19,7 @@
 @dynamic number;
 @dynamic subtasks;
 @dynamic oneSubtask;
+@dynamic someDate;
+@dynamic someBoolean;
 
 @end

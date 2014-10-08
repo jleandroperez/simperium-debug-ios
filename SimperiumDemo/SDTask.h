@@ -14,11 +14,13 @@
 
 @interface SDTask : SPManagedObject
 
-@property (nonatomic, retain) NSString * payload;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * number;
-@property (nonatomic, retain) NSSet *subtasks;
-@property (nonatomic, retain) SDSubTask *oneSubtask;
+@property (nonatomic, retain) NSString *    payload;
+@property (nonatomic, retain) NSString*     title;
+@property (nonatomic, retain) NSNumber*     someBoolean;
+@property (nonatomic, retain) NSDate*       someDate;
+@property (nonatomic, retain) NSNumber*     number;
+@property (nonatomic, retain) NSSet*        subtasks;
+@property (nonatomic, retain) SDSubTask*    oneSubtask;
 @end
 
 @interface SDTask (CoreDataGeneratedAccessors)
