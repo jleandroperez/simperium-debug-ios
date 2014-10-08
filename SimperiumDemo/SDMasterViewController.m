@@ -24,7 +24,7 @@ NSString* const kAppId				= @"donor-date-4b8";
 NSString* const kAPIKey				= @"7b5e3fc0763f4287b22cf1a872942651";
 
 
-NSInteger const kEntitiesBlast		= 1;
+NSInteger const kEntitiesBlast		= 5000;
 NSInteger const kSubEntitiesRatio	= 0;
 NSInteger const kEntityByteSize		= 1;
 NSInteger const kEntitiesToDelete	= 1;
@@ -280,8 +280,9 @@ BOOL const kPushDetails				= false;
 	NSLog(@"<> Updating Model Object");
 	
 	[self.privateContext performBlock:^{
-		SDTask* task	= (SDTask*)[self.privateContext objectWithID:objectID];
-		task.title		= [NSString stringWithFormat:@"Updated at [%@]", [self.timeFormat stringFromDate:[NSDate date]]];
+		SDTask* task        = (SDTask*)[self.privateContext objectWithID:objectID];
+		task.title          = [NSString stringWithFormat:@"Updated at [%@]", [self.timeFormat stringFromDate:[NSDate date]]];
+        task.someBoolean    = @(true);
 		[self save];
 	}];
 }
@@ -442,6 +443,9 @@ BOOL const kPushDetails				= false;
             
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        default:
             break;
     }
 }
